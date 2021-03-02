@@ -1,4 +1,6 @@
 # Port of undistortFunctions
+[![docker-build](https://github.com/evroon/undistort-functions/actions/workflows/main.yml/badge.svg)](https://github.com/evroon/undistort-functions/actions/workflows/main.yml)
+
 Updated version of [undistortFunctions](https://sites.google.com/site/scarabotix/ocamcalib-toolbox/ocamcalib-toolbox-download-page).
 
 This project ports the code to OpenCV 4 and includes a Dockerfile for building and testing the code.
