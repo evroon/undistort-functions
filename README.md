@@ -1,11 +1,23 @@
 # Port of undistortFunctions
 [![docker-build](https://github.com/evroon/undistort-functions/actions/workflows/main.yml/badge.svg)](https://github.com/evroon/undistort-functions/actions/workflows/main.yml)
 
-Updated version of [undistortFunctions](https://sites.google.com/site/scarabotix/ocamcalib-toolbox/ocamcalib-toolbox-download-page).
+Updated version of [undistortFunctions](https://sites.google.com/site/scarabotix/ocamcalib-toolbox/ocamcalib-toolbox-download-page), see: [References](#References).
 
 This project ports the code to OpenCV 4 and includes a Dockerfile for building and testing the code.
 
-# References
+## Usage
+First, install Docker. If you don't have it installed yet, you can run `etc/install_docker.sh`.
+
+Subsequently, build and run the Docker image using:
+
+```bash
+./build_docker.sh
+./launch_docker.sh
+```
+
+If you need to open a shell to the Docker container, change the command of `docker run` in `./launch_docker.sh` and add `-it` to `docker run` for an interactive TTY shell.
+
+## References
 Cited from the [homepage](https://sites.google.com/site/scarabotix/ocamcalib-toolbox/ocamcalib-toolbox-download-page) of the project:
 
 Scaramuzza, D., Martinelli, A. and Siegwart, R.. "A Flexible Technique for Accurate Omnidirectional Camera Calibration and Structure from Motion", Proceedings of IEEE International Conference of Vision Systems (ICVS'06), New York, January 5-7, 2006.[PDF]
