@@ -1,0 +1,25 @@
+name: docker-build
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+  schedule:
+    - cron: '00 4 * * 3'
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build
+      run: ./build_docker.sh
+
+    - name: Launch
+      run: ./launch_docker.sh
