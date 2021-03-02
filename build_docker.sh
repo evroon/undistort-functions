@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t $USER/yolov4:latest -f docker/Dockerfile .
+docker build -t $USER/undistort-functions:latest .
