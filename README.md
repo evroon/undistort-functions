@@ -8,14 +8,20 @@ This project ports the code to OpenCV 4 and includes a Dockerfile for building a
 ## Usage
 First, install Docker. If you don't have it installed yet, you can run `etc/install_docker.sh`.
 
-Subsequently, build and run the Docker image using:
+Subsequently, build the Docker image and undistort the files in the `examples` directory using:
 
 ```bash
 ./build_docker.sh
-./launch_docker.sh
+./launch_docker.sh --run-example
 ```
 
 If you need to open a shell to the Docker container, change the command of `docker run` in `./launch_docker.sh` and add `-it` to `docker run` for an interactive TTY shell.
+
+To run the undistortion on "real" data, use:
+
+```bash
+./launch_docker.sh --run input_model.txt input_image.jpg output_image.jpg
+```
 
 ## References
 Cited from the [homepage](https://sites.google.com/site/scarabotix/ocamcalib-toolbox/ocamcalib-toolbox-download-page) of the project:
