@@ -8,7 +8,7 @@
 #include "ocam_functions.h"
 
 //------------------------------------------------------------------------------
-int get_ocam_model(struct ocam_model *myocam_model, char *filename)
+int get_ocam_model(struct ocam_model *myocam_model, const std::string& filename)
 {
  double *pol        = myocam_model->pol;
  double *invpol     = myocam_model->invpol;
@@ -26,9 +26,9 @@ int get_ocam_model(struct ocam_model *myocam_model, char *filename)
  int i;
 
  //Open file
- if(!(f=fopen(filename,"r")))
+ if(!(f=fopen(filename.c_str(),"r")))
  {
-   printf("File %s cannot be opened\n", filename);
+   printf("File %s cannot be opened\n", filename.c_str());
    return -1;
  }
 

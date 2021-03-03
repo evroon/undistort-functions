@@ -16,12 +16,15 @@ using namespace cv;
 
 int main(int argc, char *argv[])
 {
+  const bool use_gui = false;
+  const std::string base_dir = "examples";
+
   /* --------------------------------------------------------------------*/
   /* Read the parameters of the omnidirectional camera from the TXT file */
   /* --------------------------------------------------------------------*/
   struct ocam_model o, o_cata; // our ocam_models for the fisheye and catadioptric cameras
-  get_ocam_model(&o, "./calib_results_fisheye.txt");
-  get_ocam_model(&o_cata, "./calib_results_catadioptric.txt");
+  get_ocam_model(&o, base_dir + "/calib_results_fisheye.txt");
+  get_ocam_model(&o_cata, base_dir + "/calib_results_catadioptric.txt");
   /* --------------------------------------------------------------------*/
   /* Print ocam_model parameters                                         */
   /* --------------------------------------------------------------------*/
@@ -61,11 +64,12 @@ int main(int argc, char *argv[])
   /* --------------------------------------------------------------------*/
   /* Allocate space for the unistorted images                            */
   /* --------------------------------------------------------------------*/
-  Mat *src1         = new Mat(imread("./test_fisheye.jpg"));      // source image 1
-  Mat *src2         = new Mat(imread("./test_catadioptric.jpg"));      // source image 2
-  Mat *dst_persp   = new Mat( cvGetSize(src1), 8, 3 );   // undistorted perspective and panoramic image
-  CvSize size_pan_image = cvSize(1200,400);        // size of the undistorted panoramic image
-  Mat *dst_pan     = new Mat( size_pan_image, 8, 3 );    // undistorted panoramic image
+  CvSize size_pan_image = cvSize(1200, 400);      // size of the undistorted panoramic image
+
+  Mat *src1       = new Mat(imread(base_dir + "/test_fisheye.jpg"));      // source image 1
+  Mat *src2       = new Mat(imread(base_dir + "/test_catadioptric.jpg")); // source image 2
+  Mat *dst_persp  = new Mat(src1->cols, src1->rows, 8, 3 );     // undistorted perspective and panoramic image
+  Mat *dst_pan    = new Mat( size_pan_image, 8, 3 );            // undistorted panoramic image
 
   Mat* mapx_persp = new Mat(src1->rows, src1->cols, CV_32FC1);
   Mat* mapy_persp = new Mat(src1->rows, src1->cols, CV_32FC1);
@@ -107,31 +111,34 @@ int main(int argc, char *argv[])
   /* --------------------------------------------------------------------*/
   /* Display image                                                       */
   /* --------------------------------------------------------------------*/
-  namedWindow( "Original fisheye camera image", 1 );
-  imshow( "Original fisheye camera image", *src1 );
+  if (use_gui) {
+    namedWindow( "Original fisheye camera image", 1 );
+    imshow( "Original fisheye camera image", *src1 );
 
-  namedWindow( "Undistorted Perspective Image", 1 );
-  imshow( "Undistorted Perspective Image", *dst_persp );
+    namedWindow( "Undistorted Perspective Image", 1 );
+    imshow( "Undistorted Perspective Image", *dst_persp );
 
-  namedWindow( "Original Catadioptric camera image", 1 );
-  imshow( "Original Catadioptric camera image", *src2 );
+    namedWindow( "Original Catadioptric camera image", 1 );
+    imshow( "Original Catadioptric camera image", *src2 );
 
-  namedWindow( "Undistorted Panoramic Image", 1 );
-  imshow( "Undistorted Panoramic Image", *dst_pan );
+    namedWindow( "Undistorted Panoramic Image", 1 );
+    imshow( "Undistorted Panoramic Image", *dst_pan );
+  }
 
   /* --------------------------------------------------------------------*/
   /* Save image                                                          */
   /* --------------------------------------------------------------------*/
-  imwrite("undistorted_perspective.jpg", *dst_persp);
+  imwrite(base_dir + "/undistorted_perspective.jpg", *dst_persp);
   printf("\nImage %s saved\n","undistorted_perspective.jpg");
 
-  imwrite("undistorted_panoramic.jpg", *dst_pan);
+  imwrite(base_dir + "/undistorted_panoramic.jpg", *dst_pan);
   printf("\nImage %s saved\n","undistorted_panoramic.jpg");
 
   /* --------------------------------------------------------------------*/
   /* Wait until key presses                                              */
   /* --------------------------------------------------------------------*/
-  waitKey();
+  if (use_gui)
+    waitKey();
 
   /* --------------------------------------------------------------------*/
   /* Free memory                                                         */
@@ -145,15 +152,6 @@ int main(int argc, char *argv[])
   mapy_persp->release();
   mapx_pan->release();
   mapy_pan->release();
-
-  // cvReleaseImage(&src1);
-  // cvReleaseImage(&src2);
-  // cvReleaseImage(&dst_persp);
-  // cvReleaseImage(&dst_pan);
-  // cvReleaseMat(&mapx_persp);
-  // cvReleaseMat(&mapy_persp);
-  // cvReleaseMat(&mapx_pan);
-  // cvReleaseMat(&mapy_pan);
 
   return 0;
 }

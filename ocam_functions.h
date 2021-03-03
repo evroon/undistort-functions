@@ -41,7 +41,7 @@ struct ocam_model
  This function reads the parameters of the omnidirectional camera model from
  a given TXT file
 ------------------------------------------------------------------------------*/
-int get_ocam_model(struct ocam_model *myocam_model, char *filename);
+int get_ocam_model(struct ocam_model *myocam_model, const std::string& filename);
 
 /*------------------------------------------------------------------------------
  WORLD2CAM projects a 3D point on to the image
