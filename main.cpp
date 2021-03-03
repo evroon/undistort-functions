@@ -101,8 +101,8 @@ int main(int argc, char *argv[])
   /* CV_INTER_AREA - resampling using pixel area relation. It is the preferred method for image decimation that gives moire-free results. In case of zooming it is similar to CV_INTER_NN method. */
   /* CV_INTER_CUBIC - bicubic interpolation.                             */
   /* --------------------------------------------------------------------*/
-  remap( *src1, *dst_persp, *mapx_persp, *mapy_persp, CV_INTER_LINEAR+CV_WARP_FILL_OUTLIERS, BORDER_CONSTANT, Scalar(0, 0, 0) );
-  remap( *src2, *dst_pan  , *mapx_pan,   *mapy_pan, CV_INTER_LINEAR+CV_WARP_FILL_OUTLIERS, BORDER_CONSTANT, Scalar(0, 0, 0) );
+  remap( *src1, *dst_persp, *mapx_persp, *mapy_persp, INTER_LINEAR, BORDER_CONSTANT, Scalar(0, 0, 0) );
+  remap( *src2, *dst_pan  , *mapx_pan,   *mapy_pan, INTER_LINEAR, BORDER_CONSTANT, Scalar(0, 0, 0) );
 
   /* --------------------------------------------------------------------*/
   /* Display image                                                       */
