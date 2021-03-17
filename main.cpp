@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
   const std::string base_dir = "examples";
 
   if (argc != 4) {
-    std::cout << "No arguments specified. Usage: build/undistort examples/calib_results_fisheye.txt examples/test_fisheye.jpg examples/undistorted_perspective.jpg" << std::endl;
+    std::cout << "Invalid number of arguments specified. Usage: build/undistort examples/calib_results_fisheye.txt examples/test_fisheye.jpg examples/undistorted_perspective.jpg" << std::endl;
     return -1;
   }
 
@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
   /* --------------------------------------------------------------------  */
   /* Create Look-Up-Table for perspective undistortion                     */
   /* SF is kind of distance from the undistorted image to the camera       */
-  /* (it is not meters, it is justa zoom fator)                            */
+  /* (it is not meters, it is just a zoom fator)                           */
   /* Try to change SF to see how it affects the result                     */
   /* The undistortion is done on a  plane perpendicular to the camera axis */
   /* --------------------------------------------------------------------  */

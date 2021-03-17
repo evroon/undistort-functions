@@ -1,10 +1,6 @@
 FROM dkimg/opencv:4.5.0-ubuntu
 LABEL maintainer="erik.vroon22@gmail.com"
 
-# To build ORB_SLAM2 using this Docker image:
-# docker build -t undistort-functions .
-# docker run -it -v $(pwd):/undistort undistort-functions bash
-
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   build-essential \
   cmake \
