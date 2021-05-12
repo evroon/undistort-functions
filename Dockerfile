@@ -1,4 +1,4 @@
-FROM dkimg/opencv:4.5.0-ubuntu
+FROM dkimg/opencv:4.5.2-ubuntu
 LABEL maintainer="erik.vroon22@gmail.com"
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
